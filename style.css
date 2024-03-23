@@ -91,3 +91,26 @@ body {
     margin-top: 6px;
     margin-right: 12px;
 }
+.task .settings{
+    cursor: pointer;
+}
+.settings .task-menu{
+    background: fff;
+    padding: 5px 0;
+    position: absolute;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+.task-menu li{
+    height: 25px;
+    font-size: 16px;
+    padding: 17px 15px;
+    margin-bottom: 2px;
+    justify-content: flex-start;
+}
+.task-menu li:hover{
+    background: #f5f5f5;
+}
+.task-menu li i{
+    padding-right: 8px;
+}
