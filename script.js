@@ -17,7 +17,7 @@ function showTodo() {
                     <div class="settings">
                         <i onClick="showMenu(this)" class="uil uil-ellipsis-h"></i>
                         <ul class="task-menu">
-                            <li><i class=" uil uil-pen">Edit</i></li>
+                            <li onClick="editTask(${id}, '${todo.name}')"><i class="uil uil-pen">Edit</i></li>
                             <li onClick="deleteTask(${id})"><i class=" uil uil-trash">Delete</i></li>
                         </ul>
                     </div>
@@ -40,9 +40,17 @@ function showMenu(selectedTask) {
     })
 }
 
+function editTask(taskId, taskName) {
+    // console.log(taskId, taskName);
+    taskInput.value = taskName;
+}
+
 
 function deleteTask(deleteId) {
-    console.log(deleteId);
+    // console.log(deleteId);
+    todos.splice(deleteId, 1);
+    localStorage.setItem("todo-list", JSON.stringify(todos));
+    showTodo();
 }
 
 function updateStatus(selectedTask) {
