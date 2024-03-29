@@ -8,17 +8,17 @@ function showTodo() {
     if (todos) {
         todos.forEach((todo, id) => {
             // console.log(id, todo);
-            let isCompleted = todo.status == "Completed" ? "checked" : "";
+            let isCompleted = todo.status == "completed" ? "checked" : "";
             li += `<li class="task">
                     <label for="${id}">
                         <input onClick="updateStatus(this)" type="checkbox" id="${id}" ${isCompleted}>
                         <p class="${isCompleted}">${todo.name}</p>
                     </label>
                     <div class="settings">
-                        <i class="uil uil-ellipsis-h"></i>
+                        <i onClick="showMenu(this)" class="uil uil-ellipsis-h"></i>
                         <ul class="task-menu">
                             <li><i class=" uil uil-pen">Edit</i></li>
-                            <li><i class=" uil uil-trash">Delete</i></li>
+                            <li onClick="deleteTask(${id})"><i class=" uil uil-trash">Delete</i></li>
                         </ul>
                     </div>
                 </li>`;
@@ -28,6 +28,22 @@ function showTodo() {
 }
 
 showTodo();
+
+function showMenu(selectedTask) {
+    // console.log(selectedTask);
+    let taskMenu = selectedTask.parentElement.lastElementChild;
+    taskMenu.classList.add("show");
+    document.addEventListener("click", e => {
+        if(e.target.tagName != "I" || e.target != selectedTask) {
+            taskMenu.classList.remove("show");
+        }
+    })
+}
+
+
+function deleteTask(deleteId) {
+    console.log(deleteId);
+}
 
 function updateStatus(selectedTask) {
     // console.log(selectedTask)
