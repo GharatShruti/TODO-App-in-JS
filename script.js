@@ -7,11 +7,12 @@ function showTodo() {
     let li = "";
     if (todos) {
         todos.forEach((todo, id) => {
-            console.log(id, todo);
+            // console.log(id, todo);
+            let isCompleted = todo.status == "Completed" ? "checked" : "";
             li += `<li class="task">
                     <label for="${id}">
-                        <input type="checkbox" id="${id}">
-                        <p>${todo.name}</p>
+                        <input onClick="updateStatus(this)" type="checkbox" id="${id}" ${isCompleted}>
+                        <p class="${isCompleted}">${todo.name}</p>
                     </label>
                     <div class="settings">
                         <i class="uil uil-ellipsis-h"></i>
@@ -28,10 +29,23 @@ function showTodo() {
 
 showTodo();
 
+function updateStatus(selectedTask) {
+    // console.log(selectedTask)
+    let taskName = selectedTask.parentElement.lastElementChild;
+    if(selectedTask.checked) {
+        taskName.classList.add("checked");
+        todos[selectedTask.id].status = "completed";
+    }else {
+        taskName.classList.remove("checked");
+        todos[selectedTask.id].status = "pending";
+    }
+    localStorage.setItem("todo-list", JSON.stringify(todos));
+}
+
 taskInput.addEventListener("keyup", e=> {
     let userTask = taskInput.value.trim();
     if(e.key == "Enter" && userTask){
-        console.log(userTask)
+        // console.log(userTask)
         if(!todos){
             todos = [];
         }

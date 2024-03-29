@@ -88,6 +88,9 @@ body {
 .task label{
     display: flex;
 }
+.task label p.checked{
+    text-decoration: line-through;
+}
 .task label input{
     margin-top: 6px;
     margin-right: 12px;
