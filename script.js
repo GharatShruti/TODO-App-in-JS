@@ -5,24 +5,27 @@ let todos = JSON.parse(localStorage.getItem("todo-list"));
 
 function showTodo() {
     let li = "";
-    todos.forEach((todo,id) => {
-        console.log(id,todo);
-        li += `<li class="task">
-                <label for="${id}">
-                    <input type="checkbox" id="${id}">
-                    <p>${todo.name}</p>
-                </label>
-                <div class="settings">
-                    <i class="uil uil-ellipsis-h"></i>
-                    <ul class="task-menu">
-                        <li><i class=" uil uil-pen">Edit</i></li>
-                        <li><i class=" uil uil-trash">Delete</i></li>
-                    </ul>
-                </div>
-            </li>`;
-    });
+    if (todos) {
+        todos.forEach((todo, id) => {
+            console.log(id, todo);
+            li += `<li class="task">
+                    <label for="${id}">
+                        <input type="checkbox" id="${id}">
+                        <p>${todo.name}</p>
+                    </label>
+                    <div class="settings">
+                        <i class="uil uil-ellipsis-h"></i>
+                        <ul class="task-menu">
+                            <li><i class=" uil uil-pen">Edit</i></li>
+                            <li><i class=" uil uil-trash">Delete</i></li>
+                        </ul>
+                    </div>
+                </li>`;
+        });
+    }
     taskBox.innerHTML = li;
 }
+
 showTodo();
 
 taskInput.addEventListener("keyup", e=> {
